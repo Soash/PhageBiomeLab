@@ -1,0 +1,102 @@
+#main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 0px;
+    margin: auto;
+    justify-content: center;
+}
+/* css for title  */
+h1 {
+    font-size: calc(18px + 3vw);
+    background: url('images/text-bg.png');
+    background-position: center;
+    /* -webkit-background-clip: text; */
+    color: transparent;
+    font-weight: 700;
+    margin: 2% 1% -10px 1%;
+}
+/* css for img div  */
+.img {
+    height: 250px;
+    margin: 1%;
+    overflow: hidden;
+    box-shadow: 2px 5px 10px -.5px #afafaf;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all .2s;
+}
+/* css for img title  */
+.img p {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 1.2vw);
+    text-align: center;
+    font-weight: 200;
+    text-transform: uppercase;
+    color: white;
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(#ffffff9e, #000000cf);
+    margin: 0px;
+    opacity: 0;
+    transition: all .3s;
+}
+.img:hover p {
+    opacity: 1;
+}
+/* css for image  */
+.img img {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+/* writing media query for make it responsive  */
+@media(max-width: 1000px) {
+    .img {
+        height: 150px;
+    }
+
+    .img img {
+        height: 150px;
+    }
+
+    .img p {
+        height: 150px;
+    }
+}
+@media(max-width: 650px) {
+    .img {
+        height: 130px;
+    }
+
+    .img p {
+        height: 130px;
+    }
+
+    .img img {
+        height: 130px;
+    }
+
+    #main {
+        justify-content: center;
+    }
+}
+@media(max-width: 350px) {
+    .img {
+        height: 100px;
+    }
+
+    .img p {
+        height: 100px;
+    }
+
+    .img img {
+        height: 100px;
+    }
+}

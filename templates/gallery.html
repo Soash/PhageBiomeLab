@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="text-dark d-flex align-items-center" 
+     style="background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)), 
+            url('{% static "img/cover-1.jpg" %}') no-repeat center center/cover; 
+            height: 500px; 
+            width: 100%;">
+    <div class="container text-start m-2 m-md-5">
+        <h2 class="display-4"><b>Gallery</b></h2>
+    </div>
+</div>
+
+
+
+<div class="container my-5">
+    <div class="row">
+        <div id="main">
+            {% for image in images %}
+
+                <div class="img">
+                    <a href="{{ image.image.url }}" data-bs-toggle="modal" data-bs-target="#imageModal" data-image-url="{{ image.image.url }}">
+                        <img src="{{ image.image.url }}" class="img-fluid" alt="{{ image.title }}">
+                        <p>{{ image.title }}</p>
+                    </a>
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Image Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid" alt="Preview">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+
+    imageModal.addEventListener('show.bs.modal', (event) => {
+        const button = event.relatedTarget;
+        const imageUrl = button.getAttribute('data-image-url');
+        modalImage.src = imageUrl;
+    });
+</script>
+<script>
+    function setRatio() {
+        const main = document.getElementById("main"); // Select the main div
+        if (!main) return; // If #main doesn't exist, exit
+
+        const images = main.querySelectorAll(".img"); // Select all divs with class "img"
+        if (images.length === 0) return; // If no .img divs exist, exit
+
+        // Loop through all image containers
+        images.forEach((imageContainer) => {
+            const mainImg = imageContainer.querySelector("img"); // Select the image inside .img div
+            if (!mainImg) return; // Skip if no <img> is found
+
+            mainImg.onload = () => {
+                const imgRatio = mainImg.naturalWidth / mainImg.naturalHeight; // Get the ratio of the image
+                const maxWidth = mainImg.offsetHeight * imgRatio + (mainImg.offsetHeight * imgRatio) / 2; // Calculate max-width
+
+                const applyStyles = (mediaQuery) => {
+                    if (mediaQuery.matches) {
+                        // Mobile styles
+                        imageContainer.style.flexGrow = imgRatio;
+                        imageContainer.style.flexShrink = imgRatio;
+                        imageContainer.style.maxWidth = "unset"; // Reset max-width for mobile
+                    } else {
+                        // Desktop styles
+                        imageContainer.style.flexGrow = imgRatio;
+                        imageContainer.style.flexShrink = imgRatio;
+                        imageContainer.style.maxWidth = `${maxWidth}px`; // Set max-width
+                    }
+                };
+
+                const mediaQuery = window.matchMedia("(max-width: 550px)");
+                applyStyles(mediaQuery); // Apply initial styles
+                mediaQuery.addEventListener("change", applyStyles); // Listen for screen size changes
+            };
+
+            // Trigger image load event if the image is already loaded
+            if (mainImg.complete) {
+                mainImg.onload();
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", setRatio); // Run when DOM is loaded
+</script>
+
+{% endblock %}

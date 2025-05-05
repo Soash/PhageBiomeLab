@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.0/css/dataTables.dataTables.css" />
+
+    <style>
+        .table-container {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+    
+{% block content %}
+
+    <div class="p-4">
+
+        <h2 class="text-center mb-4">Microbial Database</h2>
+
+        <div class="text-center mb-4">
+            <button class="btn btn-primary me-2" onclick="showTable('bacteria')">Bacteria Database</button>
+            <button class="btn btn-success" onclick="showTable('phage')">Phage Database</button>
+        </div>
+
+        <!-- Bacteria Table -->
+        <div id="bacteria-table" class="table-container">
+            <h4 class="mb-3">Bacteria Database</h4>
+            <div class="table-responsive">
+                <table id="bacteriaDataTable" class="table table-bordered table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>AMR Status</th>
+                            <th>Strain Category</th>
+                            <th>Collected From</th>
+                            <th>Active Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for b in bacteria_list %}
+                        <tr>
+                            <td>{{ b.name }}</td>
+                            <td>{{ b.amr_status }}</td>
+                            <td>{{ b.get_strain_category_display }}</td>
+                            <td>{{ b.source }}</td>
+                            <td>{{ b.active_date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!-- Phage Table -->
+        <div id="phage-table" class="table-container">
+            <h4 class="mb-3">Phage Database</h4>
+            <div class="table-responsive">
+                <table id="phageDataTable" class="table table-bordered table-striped nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Host</th>
+                            <th>Information</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in phage_list %}
+                        <tr>
+                            <td>{{ p.name }}</td>
+                            <td>{{ p.host }}</td>
+                            <td>{{ p.information }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <!-- jQuery + Bootstrap + DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.3.0/js/dataTables.js"></script>
+
+    <script>
+        $('#bacteriaDataTable').DataTable({
+            scrollX: true
+        });
+        $('#phageDataTable').DataTable({
+            scrollX: true
+        });
+
+        function showTable(type) {
+            document.getElementById('bacteria-table').style.display = 'none';
+            document.getElementById('phage-table').style.display = 'none';
+            if (type === 'bacteria') {
+                document.getElementById('bacteria-table').style.display = 'block';
+            } else {
+                document.getElementById('phage-table').style.display = 'block';
+            }
+        }
+
+        // Show bacteria table by default
+        window.onload = function () {
+            showTable('bacteria');
+        };
+    </script>
+{% endblock %}
+
+

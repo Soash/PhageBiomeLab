@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="text-dark d-flex align-items-center" 
+     style="background: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0)), 
+            url('{% static "img/cover-1.jpg" %}') no-repeat center center/cover; 
+            height: 500px; 
+            width: 100%;">
+    <div class="container text-start m-2 m-md-5">
+        <h2 class="display-4"><b>Publications</b></h2>
+        <p class="display-6">Total  <b class="text-danger">{{ research_projects|length }}</b> Publications</p>
+    </div>
+</div>
+
+
+
+<div class="my-5 container">
+    <h3 class="text-center text-primary"><b>List of Publications</b></h3>
+    <div class="row">
+        {% for project in research_projects %}
+        <div class="col-md-12 my-3">
+            <div class="card p-4 p-md-5">
+                <div class="row g-0">
+                    <div class="col-md-3 d-flex align-items-center justify-content-center">
+                        {% if project.image %}
+                        <img src="{{ project.image.url }}" 
+                             class="img-fluid rounded-start" 
+                             alt="{{ project.title }}">
+                        {% else %}
+                        <img src="{% static 'img/research-paper.png' %}"
+                             class="img-fluid rounded-start" 
+                             alt="Placeholder image">
+                        {% endif %}
+                    </div>                    
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <h5 class="card-title"><b>{{ forloop.counter }}. {{ project.title }}</b></h5>
+                            <p class="card-text text-justify" id="description-{{ forloop.counter }}" 
+                               data-desktop-length="50" 
+                               data-mobile-length="30">{{ project.description }}</p>
+                            <a href="{{ project.url }}" class="btn btn-primary mt-2" target="_blank">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center text-secondary">No ongoing research projects found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const truncateText = () => {
+            const isMobile = window.innerWidth < 768; // Bootstrap's mobile breakpoint
+            const descriptions = document.querySelectorAll(".card-text");
+
+            descriptions.forEach((desc) => {
+                const text = desc.dataset.original || desc.innerText.trim(); // Original full text
+                const length = isMobile 
+                    ? parseInt(desc.dataset.mobileLength) 
+                    : parseInt(desc.dataset.desktopLength);
+
+                if (!desc.dataset.original) {
+                    desc.dataset.original = text; // Save the original text
+                }
+
+                desc.innerText = text.split(" ").slice(0, length).join(" ") + (text.split(" ").length > length ? "..." : "");
+            });
+        };
+
+        truncateText(); // Initial call on page load
+
+        // Adjust truncation on window resize
+        window.addEventListener("resize", truncateText);
+    });
+</script>
+{% endblock %}
