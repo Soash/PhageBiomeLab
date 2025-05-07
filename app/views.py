@@ -6,12 +6,16 @@ def index(request):
     published_count = ResearchProject.objects.filter(status='published').count()
     total_count = ongoing_count + published_count
     about_us = TextContent.objects.get(id=1)
+    ongooing = TextContent.objects.get(id=2)
+    publication = TextContent.objects.get(id=3)
 
     context = {
         'ongoing_count': ongoing_count,
         'published_count': published_count,
         'total_count': total_count,
         'about_us': about_us.description,
+        'ongoing': ongooing.description,
+        'publication': publication.description,
     }
     return render(request, 'index.html', context)
 

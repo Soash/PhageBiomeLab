@@ -55,7 +55,7 @@
 <div class="box-1">
     
     <div class="box-2">
-        <span>Ongoing Researches</span>
+        <span>Ongoing Research Projects</span>
         <span class="counter" data-target="{{ ongoing_count }}">0</span>
     </div>
     <div class="box-2">
@@ -63,7 +63,7 @@
         <span class="counter" data-target="{{ published_count }}">0</span>
     </div>
     <div class="box-2">
-        <span>Total Researches</span>
+        <span>Total Research Projects</span>
         <span class="counter" data-target="{{ total_count }}">0</span>
     </div>
 
@@ -109,9 +109,7 @@
                             <p class="card-text text-justify" id="description-{{ forloop.counter }}" 
                                data-desktop-length="50" 
                                data-mobile-length="30">
-                               Our current projects investigate how organisms adapt to transitional environments, focusing on molecular and ecological responses within
-                               phase biomes. We are analyzing real-time biome shifts using biosensors, remote data collection, and AI-driven modeling to better understand
-                               resilience, adaptation, and inter-species interactions under changing conditions.
+                                {{ ongoing }}
                             </p>
                             <a href="{% url 'ongoing_research' %}" class="btn btn-primary mt-2">View All</a>
                         </div>
@@ -143,9 +141,7 @@
                             <p class="card-text text-justify" id="description-{{ forloop.counter }}" 
                                data-desktop-length="50" 
                                data-mobile-length="30">
-                               Our research focuses on the dynamic interactions within phase biomes, exploring how biological systems transition across different
-                               environmental and physiological states. Through integrative approaches combining molecular analysis, computational modeling, and
-                               environmental monitoring, we aim to uncover novel insights into phase-dependent behavior in complex ecosystems.
+                               {{ publications }}
                             </p>
                             <a href="{% url 'published_research' %}" class="btn btn-primary mt-2">View All</a>
                         </div>

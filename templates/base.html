@@ -7,7 +7,7 @@
     <meta name="author" content="Soash Sadat">
     <!-- https://soash.github.io/ -->
     <link rel="icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
-    <title>Phase Biome Lab</title>
+    <title>Phasebiome Lab</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -82,10 +82,10 @@
                         <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'index' %}">Home</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link {% if request.path == '/ongoing-research/' %}active{% endif %}" href="{% url 'ongoing_research' %}">Ongoing Researches</a>
+                        <a class="nav-link {% if request.path == '/ongoing-research/' %}active{% endif %}" href="{% url 'ongoing_research' %}">Ongoing Projects</a>
                     </li>
                     <li class="nav-item me-3">
-                        <a class="nav-link {% if request.path == '/published-research/' %}active{% endif %}" href="{% url 'published_research' %}">Recent Publications</a>
+                        <a class="nav-link {% if request.path == '/published-research/' %}active{% endif %}" href="{% url 'published_research' %}">Publications</a>
                     </li>
                     <li class="nav-item me-3">
                         <a class="nav-link {% if request.path == '/members/' %}active{% endif %}" href="{% url 'members' %}">Members</a>
@@ -96,9 +96,9 @@
                     <li class="nav-item me-3">
                         <a class="nav-link {% if request.path == '/database/' %}active{% endif %}" href="{% url 'database_view' %}">Database</a>
                     </li>
-                    <li class="nav-item">
+                    {% comment %} <li class="nav-item">
                         <a class="btn btn-primary" href="mailto:phagebiomelab@gmail.com">Join Us</a>
-                    </li>
+                    </li> {% endcomment %}
                 </ul>
             </div>
                       
