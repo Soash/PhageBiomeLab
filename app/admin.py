@@ -4,8 +4,8 @@ from django.utils.html import format_html
 
 @admin.register(ResearchProject)
 class ResearchProjectAdmin(admin.ModelAdmin):
-    list_display = ('title', 'status')
-    list_editable = ('status',)
+    list_display = ('title', 'status', 'date')
+    list_editable = ('status','date')
     
 @admin.register(Member)
 class MemberAdmin(admin.ModelAdmin):
