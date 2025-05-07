@@ -20,12 +20,12 @@ def index(request):
     return render(request, 'index.html', context)
 
 def ongoing_research(request):
-    research_projects = ResearchProject.objects.filter(status='ongoing')
+    research_projects = ResearchProject.objects.filter(status='ongoing').order_by('-date')
     context = {'research_projects': research_projects}
     return render(request, 'ongoing_research.html', context)
 
 def published_research(request):
-    research_projects = ResearchProject.objects.filter(status='published')
+    research_projects = ResearchProject.objects.filter(status='published').order_by('-date')
     context = {'research_projects': research_projects}
     return render(request, 'published_research.html', context)
 
@@ -55,3 +55,5 @@ def database_view(request):
         'phage_list': Phage.objects.all(),
     }
     return render(request, 'database.html', context)
+
+

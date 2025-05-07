@@ -11,6 +11,7 @@ class ResearchProject(models.Model):
     url = models.URLField(max_length=200)
     image = models.ImageField(upload_to='research_project_images/', blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ongoing')
+    date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return self.title
