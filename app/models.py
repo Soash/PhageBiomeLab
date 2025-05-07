@@ -21,6 +21,7 @@ class Member(models.Model):
     CATEGORY_CHOICES = [
         ('lab_investigator', 'Principal Investigator'),
         ('lab_investigator_co', 'Coinvestigator'),
+        ('phd_student', 'PhD Student'),
         ('ms_thesis_student', 'MS (Thesis) Student'),
         ('undergraduate_student', 'Undergraduate Student'),
         ('alumni', 'Alumni'),
