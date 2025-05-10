@@ -31,7 +31,7 @@ def published_research(request):
 
 def members(request):
     categories = {
-        'Principla Investigators': Member.objects.filter(category='lab_investigator'),
+        'Principal Investigators': Member.objects.filter(category='lab_investigator'),
         'Coinvestigators': Member.objects.filter(category='lab_investigator_co'),
         'PhD Students': Member.objects.filter(category='phd_student'),
         'MS (Thesis) Students': Member.objects.filter(category='ms_thesis_student'),
