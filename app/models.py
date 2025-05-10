@@ -19,7 +19,7 @@ class ResearchProject(models.Model):
 class Member(models.Model):
     # Choices for the category field
     CATEGORY_CHOICES = [
-        ('lab_investigator', 'Principal Investigator'),
+        ('lab_investigator', 'Principle Investigator'),
         ('lab_investigator_co', 'Coinvestigator'),
         ('phd_student', 'PhD Student'),
         ('ms_thesis_student', 'MS (Thesis) Student'),
