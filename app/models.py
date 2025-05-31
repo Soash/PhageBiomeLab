@@ -39,7 +39,7 @@ class Member(models.Model):
     phone = models.CharField(max_length=100, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
     office_address = models.TextField(max_length=400, blank=True, null=True)
-    biography = models.TextField(max_length=1000, blank=True, null=True)
+    biography = models.TextField(max_length=2000, blank=True, null=True)
     # biography = HTMLField(blank=True, null=True)
     
     def __str__(self):

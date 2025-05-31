@@ -62,7 +62,7 @@
             <ul class="nav nav-tabs mt-4" id="memberTab" role="tablist">
                 {% if publications %}
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="pub-tab" data-bs-toggle="tab" data-bs-target="#pub" type="button" role="tab" aria-selected="true">
+                    <button class="nav-link" id="pub-tab" data-bs-toggle="tab" data-bs-target="#pub" type="button" role="tab" aria-selected="true">
                         Publications ({{ publications|length }})
                     </button>
                 </li>
@@ -244,3 +244,24 @@
     </div>
 </div>
 {% endblock %}
+
+
+{% block scripts %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const firstTab = document.querySelector('#memberTab .nav-link');
+    if (firstTab) {
+      firstTab.classList.add('active');
+      const targetId = firstTab.getAttribute('data-bs-target');
+      const targetPane = document.querySelector(targetId);
+      if (targetPane) {
+        targetPane.classList.add('show', 'active');
+      }
+    }
+  });
+</script>
+
+{% endblock scripts %}
+    
+
