@@ -45,9 +45,40 @@ def members(request):
     }
     return render(request, 'members.html', context)
 
+
 def member_detail(request, pk):
     member = get_object_or_404(Member, pk=pk)
-    return render(request, 'member_detail.html', {'member': member})
+
+    if member.biography:
+        member.biography = member.biography.strip()
+
+    educations = member.educations.all().order_by('position')
+    research_interests = member.research_interests.all().order_by('position')
+    active_projects = member.active_research_projects.all().order_by('position')
+    prev_projects = member.prev_research_projects.all().order_by('position')
+    total_projects_count = active_projects.count() + prev_projects.count()
+    affiliations = member.external_affiliations.all().order_by('position')
+    awards = member.awards.all().order_by('-year')
+    publications = member.publications.all().order_by('-year')
+    teachings = member.teachings.all().order_by('position')
+    conferences = member.conferences.all().order_by('-year')
+
+    context = {
+        'member': member,
+        'educations': educations,
+        'research_interests': research_interests,
+        'active_projects': active_projects,
+        'prev_projects': prev_projects,
+        'affiliations': affiliations,
+        'awards': awards,
+        'publications': publications,
+        'teachings': teachings,
+        'conferences': conferences,
+        'total_projects_count': total_projects_count,
+    }
+
+    return render(request, 'member_detail.html', context)
+
 
 def gallery_view(request):
     images = Gallery.objects.all()

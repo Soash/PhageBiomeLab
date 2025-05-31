@@ -1,6 +1,17 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-
+{% block styles %}
+    <style>
+        .biography p {
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .nav-tabs .nav-link.active {
+            background-color: #f8f9fa;
+            border-color: #dee2e6 #dee2e6 #fff;
+        }
+    </style>
+{% endblock styles %}
 {% block content %}
 <div class="container my-5">
     <div class="row g-5">
@@ -38,52 +49,86 @@
             {% endif %}
         </div>
 
-        <!-- Right: Biography and Tabbed Details -->
+        <!-- Right Column -->
         <div class="col-lg-8">
             {% if member.biography %}
+            <div class="biography">
                 <h5 class="text-primary mb-3">Biography</h5>
                 <p class="text-muted">{{ member.biography|linebreaks }}</p>
+            </div>
             {% endif %}
 
+            <!-- Tabs -->
             <ul class="nav nav-tabs mt-4" id="memberTab" role="tablist">
-                {% if member.publications.all %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="pub-tab" data-bs-toggle="tab" data-bs-target="#pub" type="button" role="tab">Publications</button>
-                    </li>
+                {% if publications %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pub-tab" data-bs-toggle="tab" data-bs-target="#pub" type="button" role="tab" aria-selected="true">
+                        Publications ({{ publications|length }})
+                    </button>
+                </li>
                 {% endif %}
-                {% if member.awards.all %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link {% if not member.publications.all %}active{% endif %}" id="awards-tab" data-bs-toggle="tab" data-bs-target="#awards" type="button" role="tab">Awards</button>
-                    </li>
+                {% if awards %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="awards-tab" data-bs-toggle="tab" data-bs-target="#awards" type="button" role="tab" aria-selected="false">
+                        Awards ({{ awards|length }})
+                    </button>
+                </li>
                 {% endif %}
-                {% if member.educations.all %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="edu-tab" data-bs-toggle="tab" data-bs-target="#edu" type="button" role="tab">Education</button>
-                    </li>
+                {% if educations %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="edu-tab" data-bs-toggle="tab" data-bs-target="#edu" type="button" role="tab" aria-selected="false">
+                        Educations ({{ educations|length }})
+                    </button>
+                </li>
                 {% endif %}
-                {% if member.research_interests.all %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="ri-tab" data-bs-toggle="tab" data-bs-target="#ri" type="button" role="tab">Research Interests</button>
-                    </li>
+                {% if research_interests %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="ri-tab" data-bs-toggle="tab" data-bs-target="#ri" type="button" role="tab" aria-selected="false">
+                        Interests ({{ research_interests|length }})
+                    </button>
+                </li>
                 {% endif %}
-                {% if member.active_research_projects.all or member.prev_research_projects.all %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="proj-tab" data-bs-toggle="tab" data-bs-target="#proj" type="button" role="tab">Projects</button>
-                    </li>
+                {% if active_projects or prev_projects %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="proj-tab" data-bs-toggle="tab" data-bs-target="#proj" type="button" role="tab" aria-selected="false">
+                        Projects ({{ total_projects_count }})
+                    </button>
+                </li>
                 {% endif %}
-                {% if member.external_affiliations.all %}
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="aff-tab" data-bs-toggle="tab" data-bs-target="#aff" type="button" role="tab">Affiliations</button>
-                    </li>
+                {% if affiliations %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="aff-tab" data-bs-toggle="tab" data-bs-target="#aff" type="button" role="tab" aria-selected="false">
+                        Affiliations ({{ affiliations|length }})
+                    </button>
+                </li>
                 {% endif %}
-            </ul>
+                {% if teachings %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="teach-tab" data-bs-toggle="tab" data-bs-target="#teach" type="button" role="tab" aria-selected="false">
+                        Teaching ({{ teachings|length }})
+                    </button>
+                </li>
+                {% endif %}
+                {% if conferences %}
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="conf-tab" data-bs-toggle="tab" data-bs-target="#conf" type="button" role="tab" aria-selected="false">
+                        Conferences ({{ conferences|length }})
+                    </button>
+                </li>
+                {% endif %}
+            </ul> 
 
+
+
+
+            <!-- Tab Content -->
             <div class="tab-content p-3 border border-top-0" id="memberTabContent">
-                {% if member.publications.all %}
-                <div class="tab-pane fade show active" id="pub" role="tabpanel">
+                {% if publications %}
+                <div class="tab-pane fade show active" id="pub" role="tabpanel" aria-labelledby="pub-tab">
                     <ul class="list-group">
-                        {% for pub in member.publications.all %}
+                        {% for pub in publications %}
                             <li class="list-group-item">
+                                {{ forloop.counter }}. 
                                 <strong>{{ pub.year }}</strong> - 
                                 {% if pub.url %}
                                     <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
@@ -96,67 +141,105 @@
                 </div>
                 {% endif %}
 
-                {% if member.awards.all %}
-                <div class="tab-pane fade {% if not member.publications.all %}show active{% endif %}" id="awards" role="tabpanel">
+                {% if awards %}
+                <div class="tab-pane fade" id="awards" role="tabpanel" aria-labelledby="awards-tab">
                     <ul class="list-group">
-                        {% for award in member.awards.all %}
-                            <li class="list-group-item"><strong>{{ award.year }}</strong> - {{ award.title }}</li>
+                        {% for award in awards %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. <strong>{{ award.year }}</strong> - {{ award.title }}
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 {% endif %}
 
-                {% if member.educations.all %}
-                <div class="tab-pane fade" id="edu" role="tabpanel">
+                {% if educations %}
+                <div class="tab-pane fade" id="edu" role="tabpanel" aria-labelledby="edu-tab">
                     <ul class="list-group">
-                        {% for edu in member.educations.all %}
-                            <li class="list-group-item">{{ edu.title }}</li>
+                        {% for edu in educations %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ edu.title }}
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 {% endif %}
 
-                {% if member.research_interests.all %}
-                <div class="tab-pane fade" id="ri" role="tabpanel">
+                {% if research_interests %}
+                <div class="tab-pane fade" id="ri" role="tabpanel" aria-labelledby="ri-tab">
                     <ul class="list-group">
-                        {% for ri in member.research_interests.all %}
-                            <li class="list-group-item">{{ ri.title }}</li>
+                        {% for ri in research_interests %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ ri.title }}
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 {% endif %}
 
-                {% if member.active_research_projects.all or member.prev_research_projects.all %}
-                <div class="tab-pane fade" id="proj" role="tabpanel">
-                    {% if member.active_research_projects.all %}
-                        <h6 class="text-success">Active Projects</h6>
-                        <ul class="list-group mb-3">
-                            {% for proj in member.active_research_projects.all %}
-                                <li class="list-group-item">{{ proj.title }}</li>
-                            {% endfor %}
-                        </ul>
+                {% if active_projects or prev_projects %}
+                <div class="tab-pane fade" id="proj" role="tabpanel" aria-labelledby="proj-tab">
+                    {% if active_projects %}
+                    <h6 class="text-success">Active Projects</h6>
+                    <ul class="list-group mb-3">
+                        {% for proj in active_projects %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ proj.title }}
+                            </li>
+                        {% endfor %}
+                    </ul>
                     {% endif %}
-                    {% if member.prev_research_projects.all %}
-                        <h6 class="text-muted">Previous Projects</h6>
-                        <ul class="list-group">
-                            {% for proj in member.prev_research_projects.all %}
-                                <li class="list-group-item">{{ proj.title }}</li>
-                            {% endfor %}
-                        </ul>
+
+                    {% if prev_projects %}
+                    <h6 class="text-muted">Previous Projects</h6>
+                    <ul class="list-group">
+                        {% for proj in prev_projects %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ proj.title }}
+                            </li>
+                        {% endfor %}
+                    </ul>
                     {% endif %}
                 </div>
                 {% endif %}
 
-                {% if member.external_affiliations.all %}
-                <div class="tab-pane fade" id="aff" role="tabpanel">
+                {% if affiliations %}
+                <div class="tab-pane fade" id="aff" role="tabpanel" aria-labelledby="aff-tab">
                     <ul class="list-group">
-                        {% for aff in member.external_affiliations.all %}
-                            <li class="list-group-item">{{ aff.title }}</li>
+                        {% for aff in affiliations %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ aff.title }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if teachings %}
+                <div class="tab-pane fade" id="teach" role="tabpanel" aria-labelledby="teach-tab">
+                    <ul class="list-group">
+                        {% for teaching in teachings %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ teaching.title }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if conferences %}
+                <div class="tab-pane fade" id="conf" role="tabpanel" aria-labelledby="conf-tab">
+                    <ul class="list-group">
+                        {% for conf in conferences %}
+                            <li class="list-group-item">
+                                {{ forloop.counter }}. {{ conf.title }} {% if conf.year %}({{ conf.year }}){% endif %}
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 {% endif %}
             </div>
+
         </div>
     </div>
 </div>
