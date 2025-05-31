@@ -110,9 +110,8 @@ class MemberAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'designation', 'department', 'university')
     search_fields = ('name', 'category', 'university')
     inlines = [
-        PublicationInline, AwardInline, TeachingInline, ConferenceInline,
         EducationInline, ResearchInterestInline, ActiveResearchProjectInline,
-        PrevResearchProjectInline, ExternalAffiliationInline
+        PrevResearchProjectInline, ExternalAffiliationInline, PublicationInline, TeachingInline, AwardInline, ConferenceInline,
     ]
     
 

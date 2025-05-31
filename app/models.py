@@ -7,9 +7,9 @@ class ResearchProject(models.Model):
         ('published', 'Published'),
     ]
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=400)
     description = models.TextField()
-    url = models.URLField(max_length=200)
+    url = models.URLField(max_length=400)
     image = models.ImageField(upload_to='research_project_images/', blank=True, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='ongoing')
     date = models.DateField(blank=True, null=True)
@@ -35,68 +35,60 @@ class Member(models.Model):
     designation = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     university = models.CharField(max_length=100)
+    
     phone = models.CharField(max_length=100, blank=True, null=True)
     email = models.CharField(max_length=100, blank=True, null=True)
-    biography = HTMLField(blank=True, null=True)
+    office_address = models.TextField(max_length=400, blank=True, null=True)
+    biography = models.TextField(max_length=1000, blank=True, null=True)
+    # biography = HTMLField(blank=True, null=True)
     
-    # education = HTMLField(blank=True, null=True)
-    # research_interests = HTMLField(blank=True, null=True)
-    # active_research_project = HTMLField(blank=True, null=True)
-    # previous_research_project = HTMLField(blank=True, null=True)
-    
-    # journal_publications = HTMLField(blank=True, null=True)
-    # external_affiliations = HTMLField(blank=True, null=True)
-    graduate_supervision = HTMLField(blank=True, null=True)
-    
-
     def __str__(self):
         return self.name
 
-
 class Publication(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='publications')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     year = models.PositiveIntegerField(blank=True, null=True)
-    url = models.URLField(max_length=200, blank=True, null=True)
+    url = models.URLField(max_length=400, blank=True, null=True)
     
 class Award(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='awards')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     year = models.PositiveIntegerField(blank=True, null=True)
     
 class Teaching(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='teachings')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     position = models.PositiveIntegerField(blank=True, null=True)
     
 class Conference(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='conferences')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     year = models.PositiveIntegerField(blank=True, null=True)
     
 class Education(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='educations')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     position = models.PositiveIntegerField(blank=True, null=True)
     
 class ResearchInterest(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='research_interests')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     position = models.PositiveIntegerField(blank=True, null=True)
     
 class ActiveResearchProject(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='active_research_projects')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     position = models.PositiveIntegerField(blank=True, null=True)
     
 class PrevResearchProject(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='prev_research_projects')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     position = models.PositiveIntegerField(blank=True, null=True)
     
 class ExternalAffiliation(models.Model):
     member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name='external_affiliations')
-    title = models.TextField(max_length=200, blank=True, null=True)
+    title = models.TextField(max_length=400, blank=True, null=True)
     position = models.PositiveIntegerField(blank=True, null=True)
 
 
@@ -122,7 +114,7 @@ class Gallery(models.Model):
         return self.title if self.title else f"Image {self.id}"
     
 class TextContent(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=400)
     description = models.TextField()
 
     def __str__(self):

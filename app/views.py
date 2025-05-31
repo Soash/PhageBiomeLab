@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Bacteria, Gallery, Member, Phage, ResearchProject, TextContent
 
 def index(request):
@@ -44,6 +44,10 @@ def members(request):
         'total_members': Member.objects.count(),
     }
     return render(request, 'members.html', context)
+
+def member_detail(request, pk):
+    member = get_object_or_404(Member, pk=pk)
+    return render(request, 'member_detail.html', {'member': member})
 
 def gallery_view(request):
     images = Gallery.objects.all()

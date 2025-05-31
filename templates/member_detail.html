@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row g-5">
+        <!-- Left: Profile Image & Basic Info -->
+        <div class="col-lg-4 text-center">
+            <div class="card shadow-sm border-0">
+                {% if member.photo %}
+                    <img src="{{ member.photo.url }}" class="card-img-top object-fit-cover rounded-top" style="height: 400px;" alt="{{ member.name }}">
+                {% else %}
+                    <img src="{% static 'img/person.webp' %}" class="card-img-top object-fit-cover rounded-top" style="height: 400px;" alt="{{ member.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title text-primary fw-bold">{{ member.name }}</h4>
+                    <p class="text-muted mb-1 fw-semibold">{{ member.designation }}</p>
+                    <p class="text-secondary small mb-1">{{ member.department }}</p>
+                    <p class="text-secondary small">{{ member.university }}</p>
+                </div>
+            </div>
+
+            {% if member.email or member.phone or member.office_address %}
+            <div class="mt-4">
+                <h5 class="text-primary">Contact Info</h5>
+                <ul class="list-group list-group-flush">
+                    {% if member.email %}
+                        <li class="list-group-item"><strong>Email:</strong> {{ member.email }}</li>
+                    {% endif %}
+                    {% if member.phone %}
+                        <li class="list-group-item"><strong>Phone:</strong> {{ member.phone }}</li>
+                    {% endif %}
+                    {% if member.office_address %}
+                        <li class="list-group-item"><strong>Office:</strong> {{ member.office_address }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Right: Biography and Tabbed Details -->
+        <div class="col-lg-8">
+            {% if member.biography %}
+                <h5 class="text-primary mb-3">Biography</h5>
+                <p class="text-muted">{{ member.biography|linebreaks }}</p>
+            {% endif %}
+
+            <ul class="nav nav-tabs mt-4" id="memberTab" role="tablist">
+                {% if member.publications.all %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="pub-tab" data-bs-toggle="tab" data-bs-target="#pub" type="button" role="tab">Publications</button>
+                    </li>
+                {% endif %}
+                {% if member.awards.all %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link {% if not member.publications.all %}active{% endif %}" id="awards-tab" data-bs-toggle="tab" data-bs-target="#awards" type="button" role="tab">Awards</button>
+                    </li>
+                {% endif %}
+                {% if member.educations.all %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="edu-tab" data-bs-toggle="tab" data-bs-target="#edu" type="button" role="tab">Education</button>
+                    </li>
+                {% endif %}
+                {% if member.research_interests.all %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="ri-tab" data-bs-toggle="tab" data-bs-target="#ri" type="button" role="tab">Research Interests</button>
+                    </li>
+                {% endif %}
+                {% if member.active_research_projects.all or member.prev_research_projects.all %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="proj-tab" data-bs-toggle="tab" data-bs-target="#proj" type="button" role="tab">Projects</button>
+                    </li>
+                {% endif %}
+                {% if member.external_affiliations.all %}
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="aff-tab" data-bs-toggle="tab" data-bs-target="#aff" type="button" role="tab">Affiliations</button>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <div class="tab-content p-3 border border-top-0" id="memberTabContent">
+                {% if member.publications.all %}
+                <div class="tab-pane fade show active" id="pub" role="tabpanel">
+                    <ul class="list-group">
+                        {% for pub in member.publications.all %}
+                            <li class="list-group-item">
+                                <strong>{{ pub.year }}</strong> - 
+                                {% if pub.url %}
+                                    <a href="{{ pub.url }}" target="_blank">{{ pub.title }}</a>
+                                {% else %}
+                                    {{ pub.title }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if member.awards.all %}
+                <div class="tab-pane fade {% if not member.publications.all %}show active{% endif %}" id="awards" role="tabpanel">
+                    <ul class="list-group">
+                        {% for award in member.awards.all %}
+                            <li class="list-group-item"><strong>{{ award.year }}</strong> - {{ award.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if member.educations.all %}
+                <div class="tab-pane fade" id="edu" role="tabpanel">
+                    <ul class="list-group">
+                        {% for edu in member.educations.all %}
+                            <li class="list-group-item">{{ edu.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if member.research_interests.all %}
+                <div class="tab-pane fade" id="ri" role="tabpanel">
+                    <ul class="list-group">
+                        {% for ri in member.research_interests.all %}
+                            <li class="list-group-item">{{ ri.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+                {% if member.active_research_projects.all or member.prev_research_projects.all %}
+                <div class="tab-pane fade" id="proj" role="tabpanel">
+                    {% if member.active_research_projects.all %}
+                        <h6 class="text-success">Active Projects</h6>
+                        <ul class="list-group mb-3">
+                            {% for proj in member.active_research_projects.all %}
+                                <li class="list-group-item">{{ proj.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                    {% if member.prev_research_projects.all %}
+                        <h6 class="text-muted">Previous Projects</h6>
+                        <ul class="list-group">
+                            {% for proj in member.prev_research_projects.all %}
+                                <li class="list-group-item">{{ proj.title }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                {% endif %}
+
+                {% if member.external_affiliations.all %}
+                <div class="tab-pane fade" id="aff" role="tabpanel">
+                    <ul class="list-group">
+                        {% for aff in member.external_affiliations.all %}
+                            <li class="list-group-item">{{ aff.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

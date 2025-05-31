@@ -30,6 +30,15 @@
     .card-body {
         flex-grow: 1;
     }
+    .hover-shadow:hover {
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
+        transform: translateY(-3px);
+        transition: all 0.2s ease-in-out;   
+    }
+    .object-fit-cover {
+        object-fit: cover;
+    }
+
 </style>
 {% endblock %}
 {% block content %}
@@ -45,38 +54,37 @@
 </div>
 
 
-<div class="my-5 container">
-    <h3 class="text-center text-primary fw-bold">List of Members</h3>
+<div class="container my-5">
+    <h3 class="text-center text-primary fw-bold mb-5">List of Members</h3>
 
     {% for title, members in member_categories.items %}
         {% if members %}
-            <h3 class="mb-4 mt-4">{{ title }}</h3>
-            <div class="row">
+            <h4 class="text-dark border-start border-4 border-primary ps-3 mb-4 mt-5">{{ title }}</h4>
+            <div class="row g-4">
                 {% for member in members %}
-                <div class="col-lg-3 col-md-4 col-sm-6 col-12 mb-4">
-                    <div class="card text-start h-100">
-                        <div class="card-img-container">
-                            {% if member.photo %}
-                                <img src="{{ member.photo.url }}" class="card-img-top" alt="{{ member.name }}">
-                            {% else %}
-                                <img src="{% static 'img/person.webp' %}" class="card-img-top" alt="{{ member.name }}">
-                            {% endif %}
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12">
+                    <a href="{% url 'member_detail' member.id %}" class="text-decoration-none text-dark">
+                        <div class="card h-100 shadow-sm border-0 hover-shadow transition">
+                            <div class="position-relative overflow-hidden" style="height: 250px;">
+                                {% if member.photo %}
+                                    <img src="{{ member.photo.url }}" class="card-img-top object-fit-cover h-100 w-100" alt="{{ member.name }}">
+                                {% else %}
+                                    <img src="{% static 'img/person.webp' %}" class="card-img-top object-fit-cover h-100 w-100" alt="{{ member.name }}">
+                                {% endif %}
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title text-primary fw-bold">{{ member.name }}</h5>
+                                <p class="card-text text-secondary mb-1 fw-semibold">{{ member.designation }}</p>
+                                <p class="card-text text-muted small mb-0">{{ member.department }}</p>
+                                <p class="card-text text-muted small">{{ member.university }}</p>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <h5 class="card-title text-primary fw-bold">{{ member.name }}</h5>
-                            <p class="card-text text-secondary mb-1 fw-bold">{{ member.designation }}</p>
-                            <p class="card-text text-muted">
-                                <span class="d-inline-block text-truncate dept" style="max-width: 100%;">{{ member.department }}</span><br>
-                                <span class="d-inline-block text-truncate dept" style="max-width: 100%;">{{ member.university }}</span>
-                            </p>                    
-                        </div>
-                    </div>
+                    </a>
                 </div>
                 {% endfor %}
             </div>
         {% endif %}
     {% endfor %}
-
 </div>
 
 
