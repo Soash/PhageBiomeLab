@@ -18,11 +18,13 @@
         <!-- Left: Profile Image & Basic Info -->
         <div class="col-lg-4 text-center">
             <div class="card shadow-sm border-0">
+
                 {% if member.photo %}
-                    <img src="{{ member.photo.url }}" class="card-img-top object-fit-cover rounded-top" style="height: 400px;" alt="{{ member.name }}">
+                    <img src="{{ member.photo.url }}" class="card-img-top object-fit-contain rounded-top" style="height: 400px;" alt="{{ member.name }}">
                 {% else %}
-                    <img src="{% static 'img/person.webp' %}" class="card-img-top object-fit-cover rounded-top" style="height: 400px;" alt="{{ member.name }}">
+                    <img src="{% static 'img/person.webp' %}" class="card-img-top object-fit-contain rounded-top" style="height: 400px;" alt="{{ member.name }}">
                 {% endif %}
+
                 <div class="card-body">
                     <h4 class="card-title text-primary fw-bold">{{ member.name }}</h4>
                     <p class="text-muted mb-1 fw-semibold">{{ member.designation }}</p>

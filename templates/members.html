@@ -63,13 +63,24 @@
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12">
                     <a href="{% url 'member_detail' member.id %}" class="text-decoration-none text-dark">
                         <div class="card h-100 shadow-sm border-0 hover-shadow transition">
-                            <div class="position-relative overflow-hidden" style="height: 300px;">
+
+                            {% comment %} <div class="position-relative overflow-hidden" style="height: 300px;">
                                 {% if member.photo %}
                                     <img src="{{ member.photo.url }}" class="card-img-top object-fit-cover h-100 w-100" alt="{{ member.name }}">
                                 {% else %}
                                     <img src="{% static 'img/person.webp' %}" class="card-img-top object-fit-cover h-100 w-100" alt="{{ member.name }}">
                                 {% endif %}
+                            </div> {% endcomment %}
+
+                            <div class="position-relative overflow-hidden" style="height: 300px;">
+                                {% if member.photo %}
+                                    <img src="{{ member.photo.url }}" class="card-img-top object-fit-contain h-100 w-100" alt="{{ member.name }}">
+                                {% else %}
+                                    <img src="{% static 'img/person.webp' %}" class="card-img-top object-fit-contain h-100 w-100" alt="{{ member.name }}">
+                                {% endif %}
                             </div>
+
+
                             <div class="card-body">
                                 <h5 class="card-title text-primary fw-bold">{{ member.name }}</h5>
                                 <p class="card-text text-secondary mb-1 fw-semibold">{{ member.designation }}</p>
