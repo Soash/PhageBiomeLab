@@ -9,6 +9,10 @@ def index(request):
     ongooing = TextContent.objects.get(id=2)
     publication = TextContent.objects.get(id=3)
     slider_images = Gallery.objects.filter(slider_image=True).order_by('-uploaded_at')[:5]
+    
+    about_us_image = ImageContent.objects.get(id=4).image.url
+    ongoinng_image = ImageContent.objects.get(id=5).image.url
+    publication_image = ImageContent.objects.get(id=6).image.url
 
     context = {
         'ongoing_count': ongoing_count,
@@ -18,6 +22,9 @@ def index(request):
         'ongoing': ongooing.description,
         'publication': publication.description,
         'slider_images': slider_images,
+        'about_us_image': about_us_image,
+        'ongoing_image': ongoinng_image,
+        'publication_image': publication_image,
     }
     return render(request, 'index.html', context)
 
@@ -28,8 +35,9 @@ def ongoing_research(request):
     return render(request, 'ongoing_research.html', context)
 
 def published_research(request):
+    cover_image = ImageContent.objects.get(id=3)
     research_projects = ResearchProject.objects.filter(status='published').order_by('-date')
-    context = {'research_projects': research_projects}
+    context = {'research_projects': research_projects, 'cover_image': cover_image.image.url}
     return render(request, 'published_research.html', context)
 
 def members(request):
