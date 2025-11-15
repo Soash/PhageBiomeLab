@@ -1,5 +1,4 @@
 from django.db import models
-from tinymce.models import HTMLField
 
 class ResearchProject(models.Model):
     STATUS_CHOICES = [
@@ -108,6 +107,7 @@ class ExternalAffiliation(models.Model):
 class Gallery(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(upload_to='gallery_images/')
+    slider_image = models.BooleanField(default=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

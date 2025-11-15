@@ -134,7 +134,8 @@ class ResearchProjectAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'uploaded_at', 'thumbnail')  # Columns in the admin panel
+    list_display = ('id', 'title', 'uploaded_at', 'thumbnail', 'slider_image')
+    list_editable = ('slider_image',)
     list_filter = ('uploaded_at',)  # Filter by upload date
     search_fields = ('title',)  # Search by title
 

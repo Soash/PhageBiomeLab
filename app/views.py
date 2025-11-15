@@ -8,6 +8,7 @@ def index(request):
     about_us = TextContent.objects.get(id=1)
     ongooing = TextContent.objects.get(id=2)
     publication = TextContent.objects.get(id=3)
+    slider_images = Gallery.objects.filter(slider_image=True).order_by('-uploaded_at')[:5]
 
     context = {
         'ongoing_count': ongoing_count,
@@ -16,6 +17,7 @@ def index(request):
         'about_us': about_us.description,
         'ongoing': ongooing.description,
         'publication': publication.description,
+        'slider_images': slider_images,
     }
     return render(request, 'index.html', context)
 
