@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    Award, Bacteria, Conference, Gallery, Phage, Publication, ResearchProject, Member, Teaching, TextContent,
+    Award, Bacteria, Conference, Gallery, ImageContent, Phage, Publication, ResearchProject, Member, Teaching, TextContent,
     Education, ResearchInterest, ActiveResearchProject, PrevResearchProject, ExternalAffiliation
 )
 from django.utils.html import format_html
@@ -152,6 +152,20 @@ class GalleryAdmin(admin.ModelAdmin):
 @admin.register(TextContent)
 class TextContentAdmin(admin.ModelAdmin):
     list_display = ('id', 'title',)
+
+@admin.register(ImageContent)
+class ImageContentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'thumbnail',)
+
+    def thumbnail(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" width="50" height="50" style="object-fit: cover; border-radius: 5px;" />',
+                obj.image.url
+            )
+        return "No Image"
+
+    thumbnail.short_description = "Thumbnail"
 
 @admin.register(Bacteria)
 class BacteriaAdmin(admin.ModelAdmin):

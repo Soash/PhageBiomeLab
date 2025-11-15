@@ -120,6 +120,13 @@ class TextContent(models.Model):
     def __str__(self):
         return self.title
 
+class ImageContent(models.Model):
+    title = models.CharField(max_length=400)
+    image = models.ImageField(upload_to='image_content/')
+
+    def __str__(self):
+        return self.title
+
 class Bacteria(models.Model):
     STRAIN_CATEGORY_CHOICES = [
         ('clinical', 'Clinical'),

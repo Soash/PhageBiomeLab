@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render
-from .models import Bacteria, Gallery, Member, Phage, ResearchProject, TextContent
+from .models import Bacteria, Gallery, ImageContent, Member, Phage, ResearchProject, TextContent
 
 def index(request):
     ongoing_count = ResearchProject.objects.filter(status='ongoing').count()
@@ -22,8 +22,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 def ongoing_research(request):
+    or_image = ImageContent.objects.get(id=1)
     research_projects = ResearchProject.objects.filter(status='ongoing').order_by('-date')
-    context = {'research_projects': research_projects}
+    context = {'research_projects': research_projects, 'or_image': or_image.image.url}
     return render(request, 'ongoing_research.html', context)
 
 def published_research(request):
@@ -32,6 +33,7 @@ def published_research(request):
     return render(request, 'published_research.html', context)
 
 def members(request):
+    members_image = ImageContent.objects.get(id=2)
     categories = {
         'Principal Investigators': Member.objects.filter(category='lab_investigator'),
         'Coinvestigators': Member.objects.filter(category='lab_investigator_co'),
@@ -43,6 +45,7 @@ def members(request):
 
     context = {
         'member_categories': categories,
+        'members_image': members_image.image,
         'total_members': Member.objects.count(),
     }
     return render(request, 'members.html', context)
