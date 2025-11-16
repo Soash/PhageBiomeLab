@@ -10,9 +10,9 @@ def index(request):
     publication = TextContent.objects.get(id=3)
     slider_images = Gallery.objects.filter(slider_image=True).order_by('-uploaded_at')[:5]
     
-    about_us_image = ImageContent.objects.get(id=4).image.url
-    ongoinng_image = ImageContent.objects.get(id=5).image.url
-    publication_image = ImageContent.objects.get(id=6).image.url
+    about_us_image = ImageContent.objects.get(order=4).image.url
+    ongoinng_image = ImageContent.objects.get(order=5).image.url
+    publication_image = ImageContent.objects.get(order=6).image.url
 
     context = {
         'ongoing_count': ongoing_count,
@@ -29,19 +29,19 @@ def index(request):
     return render(request, 'index.html', context)
 
 def ongoing_research(request):
-    or_image = ImageContent.objects.get(id=1)
+    or_image = ImageContent.objects.get(order=1)
     research_projects = ResearchProject.objects.filter(status='ongoing').order_by('-date')
     context = {'research_projects': research_projects, 'or_image': or_image.image.url}
     return render(request, 'ongoing_research.html', context)
 
 def published_research(request):
-    cover_image = ImageContent.objects.get(id=3)
+    cover_image = ImageContent.objects.get(order=3)
     research_projects = ResearchProject.objects.filter(status='published').order_by('-date')
     context = {'research_projects': research_projects, 'cover_image': cover_image.image.url}
     return render(request, 'published_research.html', context)
 
 def members(request):
-    members_image = ImageContent.objects.get(id=2)
+    members_image = ImageContent.objects.get(order=2)
     categories = {
         'Principal Investigators': Member.objects.filter(category='lab_investigator'),
         'Coinvestigators': Member.objects.filter(category='lab_investigator_co'),

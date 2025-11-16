@@ -155,7 +155,9 @@ class TextContentAdmin(admin.ModelAdmin):
 
 @admin.register(ImageContent)
 class ImageContentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'thumbnail',)
+    list_display = ('order', 'title', 'thumbnail',)
+    list_display_links = ('title',)
+    list_editable = ('order',)
 
     def thumbnail(self, obj):
         if obj.image:
