@@ -59,20 +59,33 @@
                 <table id="phageDataTable" class="table table-bordered table-striped nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Sl No</th>
+                            <th>Phage name</th>
                             <th>Host</th>
-                            <th>Information</th>
+                            <th>Isolation Source</th>
+                            <th>Genetic Information</th>
+                            <th>Life cycle</th>
+                            <th>Morphology</th>
+                            <th>Storage condition</th>
+                            <th>Other information</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for p in phage_list %}
                         <tr>
+                            <td>{{ forloop.counter }}</td>
                             <td>{{ p.name }}</td>
                             <td>{{ p.host }}</td>
+                            <td>{{ p.isolation_source }}</td>
+                            <td>{{ p.genetic_information }}</td>
+                            <td>{{ p.life_cycle }}</td>
+                            <td>{{ p.morphology }}</td>
+                            <td>{{ p.storage_condition }}</td>
                             <td>{{ p.information }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
+
                 </table>
             </div>
         </div>
@@ -100,14 +113,14 @@
             document.getElementById('phage-table').style.display = 'none';
             if (type === 'bacteria') {
                 document.getElementById('bacteria-table').style.display = 'block';
-            } else {
+            } else if (type === 'phage') {
                 document.getElementById('phage-table').style.display = 'block';
             }
         }
 
         // Show bacteria table by default
         window.onload = function () {
-            showTable('bacteria');
+            showTable('phage');
         };
     </script>
 {% endblock %}

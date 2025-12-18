@@ -144,11 +144,18 @@ class Bacteria(models.Model):
     def __str__(self):
         return self.name
 
+
 class Phage(models.Model):
-    name = models.CharField(max_length=100)
-    host = models.CharField(max_length=100)
-    information = models.TextField()
+    name = models.CharField(max_length=100, blank=True, null=True, verbose_name="Phage Name")
+    host = models.CharField(max_length=100, blank=True, null=True)
+    isolation_source = models.CharField(max_length=200, blank=True, null=True)
+    genetic_information = models.TextField(blank=True, null=True)
+    life_cycle = models.CharField(max_length=100, blank=True, null=True)
+    morphology = models.CharField(max_length=100, blank=True, null=True)
+    storage_condition = models.CharField(max_length=200, blank=True, null=True)
+    information = models.TextField(blank=True, null=True, verbose_name="Other Information")
 
     def __str__(self):
-        return self.name
+        return self.name if self.name else "Unnamed Phage"
+
 
