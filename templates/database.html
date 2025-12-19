@@ -79,7 +79,7 @@
                             <td>{{ p.isolation_source }}</td>
                             <td>{{ p.genetic_information }}</td>
                             <td>{{ p.life_cycle }}</td>
-                            <td>{{ p.morphology }}</td>
+                            <td>{{ p.morphology|default:"" }}</td>
                             <td>{{ p.storage_condition }}</td>
                             <td>{{ p.information }}</td>
                         </tr>
