@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h2 class="fw-bold mb-4 text-center">Developers</h2>
+                    <div class="developer-list">
+                        <a href="https://soash.github.io/" target="_blank" class="btn btn-outline-primary btn-lg w-100 mb-3">
+                            <i class="bi bi-person-circle"></i> Md Abu Sadat Soash
+                        </a>
+                        <a href="https://www.facebook.com/genetic.rafi" target="_blank" class="btn btn-outline-primary btn-lg w-100">
+                            <i class="bi bi-person-circle"></i> Mutashim Ahammed Rafi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+
+
+{% endblock %}

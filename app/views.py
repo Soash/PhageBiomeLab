@@ -106,3 +106,6 @@ def database_view(request):
     return render(request, 'database.html', context)
 
 
+def developer_view(request):
+    return render(request, 'developer.html')
+
