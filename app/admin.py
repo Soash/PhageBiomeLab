@@ -171,9 +171,10 @@ class ImageContentAdmin(admin.ModelAdmin):
 
 @admin.register(Bacteria)
 class BacteriaAdmin(admin.ModelAdmin):
-    list_display = ('name', 'strain_category',)
-    list_filter = ('strain_category',)
-    search_fields = ('name',)
+    list_display = ('name', 'strain_id', 'source', 'active_date', 'amr_status')
+    list_filter = ('source', 'active_date', 'amr_status')
+    search_fields = ('name', 'strain_id', 'source', 'molecular_identification', 'notes')
+    ordering = ('name',)
     
 @admin.register(Phage)
 class PhageAdmin(admin.ModelAdmin):
