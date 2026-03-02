@@ -29,21 +29,29 @@
                 <table id="bacteriaDataTable" class="table table-bordered table-striped nowrap" style="width:100%">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>AMR Status</th>
-                            <th>Strain Category</th>
-                            <th>Collected From</th>
-                            <th>Active Date</th>
+                            <th>Sl No</th>
+                            <th>Species</th>
+                            <th>Strain ID</th>
+                            <th>Source/Sample Description</th>
+                            <th>Date of Isolation</th>
+                            <th>Molecular Identification (16S)</th>
+                            <th>Antibiotic Susceptibility</th>
+                            <th>Storage Temperature</th>
+                            <th>Additional Notes</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for b in bacteria_list %}
                         <tr>
-                            <td>{{ b.name }}</td>
-                            <td>{{ b.amr_status }}</td>
-                            <td>{{ b.get_strain_category_display }}</td>
-                            <td>{{ b.source }}</td>
-                            <td>{{ b.active_date }}</td>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ b.name|default:"" }}</td>
+                            <td>{{ b.strain_id|default:"" }}</td>
+                            <td>{{ b.source|default:"" }}</td>
+                            <td>{{ b.active_date|default:"" }}</td>
+                            <td>{{ b.molecular_identification|default:"" }}</td>
+                            <td>{{ b.amr_status|default:"" }}</td>
+                            <td>{{ b.storage_temperature|default:"" }}</td>
+                            <td>{{ b.notes|default:"" }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

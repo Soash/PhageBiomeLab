@@ -135,12 +135,19 @@ class Bacteria(models.Model):
         ('laboratory', 'Laboratory'),
     ]
 
-    name = models.CharField(max_length=100)
-    amr_status = models.CharField(max_length=100)
-    strain_category = models.CharField(max_length=20, choices=STRAIN_CATEGORY_CHOICES)
+    name = models.CharField(max_length=100, verbose_name="Species")
+    strain_id = models.CharField(max_length=100, verbose_name="Strain ID", blank=True, null=True)
     source = models.CharField(max_length=255, verbose_name="Source")
-    active_date = models.DateField()
+    active_date = models.DateField(blank=True, null=True, verbose_name="Date of Isolation")
+    molecular_identification = models.TextField(blank=True, null=True, verbose_name="Molecular Identification (16S)")
+    
+    
+    amr_status = models.CharField(max_length=100, blank=True, null=True, verbose_name="Antibiotic Susceptibility")
+    storage_temperature = models.CharField(max_length=100, blank=True, null=True, verbose_name="Storage Temperature")
+    notes = models.TextField(blank=True, null=True, verbose_name="Additional Notes")
 
+    # strain_category = models.CharField(max_length=20, choices=STRAIN_CATEGORY_CHOICES)
+    
     def __str__(self):
         return self.name
 
