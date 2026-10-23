@@ -70,8 +70,8 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 │     Bacteria Model    │   │      Member Model      │   │ ResearchProject Model │
 ├───────────────────────┤   ├────────────────────────┤   ├───────────────────────┤
 │ • Species & Strain ID │   │ • Name, Category, Bio  │   │ • Title & Description │
-│ • Source & Date       │   │ • Contact & Affiliation│   │ • Status              │
-│ • 16S Identification  │   └───────────┬────────────┘   │ • URL & Banners       │
+│ • Source & Date       │   │ • Contact & Affiliation│   │ • URL & Banners       │
+│ • 16S Identification  │   └───────────┬────────────┘   │ • Status              │
 │ • AMR Susceptibility  │               │ 1:N            └───────────────────────┘
 │ • Storage Temperature │       ┌───────┴────────┐       
 └───────────────────────┘       │ Relational CV  │
