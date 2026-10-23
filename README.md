@@ -65,7 +65,7 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
                             │         Content        │
                             └────────────────────────┘
                                          ▲
-                                         │ CMS & Carousels
+                                         │ CMS
 ┌───────────────────────┐   ┌────────────────────────┐   ┌───────────────────────┐
 │     Bacteria Model    │   │      Member Model      │   │ ResearchProject Model │
 ├───────────────────────┤   ├────────────────────────┤   ├───────────────────────┤
