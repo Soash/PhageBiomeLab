@@ -62,7 +62,7 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 
 ```
                             ┌────────────────────────┐
-                            │         Content        │
+                            │         Contents       │
                             └────────────────────────┘
                                          ▲
                                          │ CMS
