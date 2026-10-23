@@ -198,8 +198,8 @@ python manage.py collectstatic --noinput
 
 **Md Abu Sadat Soash**
 - **Role:** Full-Stack Architect & Lead Developer
-- **Academic Background:** Genetic Engineering & Biotechnology (GEB), Shahjalal University of Science and Technology (SUST)
-- **Portfolio / Website:** [soash.github.io](https://soash.github.io/)
+- **Academic Background:** Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology, Sylhet, Bangladesh
+- **Portfolio:** [soash.github.io](https://soash.github.io/)
 - **GitHub:** [@Soash](https://github.com/Soash)
 
 *Co-developed with Mutashim Ahammed Rafi.*
@@ -208,4 +208,4 @@ python manage.py collectstatic --noinput
 
 ## 📄 License & Attribution
 
-Developed for **PhageBiome Lab**, Shahjalal University of Science and Technology (SUST). All rights reserved. Code licensed under the [MIT License](LICENSE) (or proprietary academic license as designated by the lab).
+Developed for **PhageBiome Lab**, Shahjalal University of Science and Technology (SUST). All rights reserved.
