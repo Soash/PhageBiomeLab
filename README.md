@@ -194,8 +194,16 @@ python manage.py collectstatic --noinput
 
 ---
 
-## 👤 Developer & Maintainer
+## 👥 Leadership, Supervision & Development
 
+### 🔬 Project Supervision & Principal Investigator
+**[Prof. Dr. Md. Shakhinur Islam Mondal, PhD](https://phagebiomelab.com/member/6/)**
+- **Role:** Principal Investigator & Project Supervisor
+- **Designation:** Professor, Department of Genetic Engineering and Biotechnology (GEB)
+- **Institution:** Shahjalal University of Science and Technology (SUST), Sylhet, Bangladesh
+- **Lab Profile:** [Prof. Mondal's Profile on PhageBiomeLab](https://phagebiomelab.com/member/6/)
+
+### 💻 System Architecture & Development
 **Md Abu Sadat Soash**
 - **Role:** Full-Stack Architect & Lead Developer
 - **Academic Background:** Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology, Sylhet, Bangladesh
