@@ -208,4 +208,4 @@ python manage.py collectstatic --noinput
 
 ## 📄 License & Attribution
 
-Developed for **PhageBiome Lab**, Shahjalal University of Science and Technology (SUST). All rights reserved.
+Developed for **PhageBiome Lab**, Shahjalal University of Science and Technology, Sylhet, Bangladesh. All rights reserved.
