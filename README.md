@@ -62,8 +62,7 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 
 ```
                             ┌────────────────────────┐
-                            │      TextContent /     │
-                            │      ImageContent      │
+                            │         Content        │
                             └────────────────────────┘
                                          ▲
                                          │ CMS & Carousels
@@ -71,10 +70,10 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 │     Bacteria Model    │   │      Member Model      │   │ ResearchProject Model │
 ├───────────────────────┤   ├────────────────────────┤   ├───────────────────────┤
 │ • Species & Strain ID │   │ • Name, Category, Bio  │   │ • Title & Description │
-│ • Source & Date       │   │ • Contact & Affiliation│   │ • Status (Ongoing /   │
-│ • 16S Identification  │   └───────────┬────────────┘   │   Published)          │
-│ • AMR Susceptibility  │               │ 1:N            │ • URL & Banners       │
-│ • Storage Temperature │       ┌───────┴────────┐       └───────────────────────┘
+│ • Source & Date       │   │ • Contact & Affiliation│   │ • Status              │
+│ • 16S Identification  │   └───────────┬────────────┘   │ • URL & Banners       │
+│ • AMR Susceptibility  │               │ 1:N            └───────────────────────┘
+│ • Storage Temperature │       ┌───────┴────────┐       
 └───────────────────────┘       │ Relational CV  │
                                 ├────────────────┤
 ┌───────────────────────┐       │ • Publications │
@@ -94,11 +93,11 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 | Layer | Technology | Purpose |
 | :--- | :--- | :--- |
 | **Backend Framework** | **Python 3.10+ / Django 5.1** | Robust ORM, URL routing, authentication, and admin governance |
-| **Database** | **SQLite (Dev) / Relational SQL** | Relational data persistence with strict foreign key constraints |
+| **Database** | **SQLite** | Relational data persistence with strict foreign key constraints |
 | **Rich Text Editor** | **django-tinymce** | In-browser WYSIWYG editing for complex scientific summaries |
-| **Asset Pipeline** | **WhiteNoise & Pillow** | Static asset compression, HTTP caching, and media processing |
+| **Asset Pipeline** | **WhiteNoise, Pillow** | Static asset compression, HTTP caching, and media processing |
 | **Frontend** | **HTML5, CSS3, JavaScript, Bootstrap** | Responsive scientific UI and dynamic query filtering |
-| **Deployment / CI** | **Linux, cPanel, Git Webhooks, Bash** | Automated build and zero-downtime deployment scripts |
+| **Deployment** | **Linux, cPanel, Git Webhooks, Bash** | Automated build and zero-downtime deployment scripts |
 
 ---
 
@@ -124,7 +123,8 @@ PhageBiomeLab/
 │   ├── members.html            # Lab member directory
 │   ├── ongoing_research.html   # Ongoing lab projects view
 │   └── published_research.html # Peer-reviewed publications index
-├── static/ & staticfiles/      # Compiled stylesheets, JavaScript, and iconography
+├── static/                     # stylesheets, JavaScript, and iconography
+├── staticfiles/                # Compiled stylesheets, JavaScript, and iconography
 ├── media/                      # Uploaded bio-images, member headshots, and project art
 ├── manage.py                   # Django CLI management utility
 └── requirements.txt            # Explicit dependency pinning
