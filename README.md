@@ -1,4 +1,4 @@
-# 🧬 PhageBiomeLab: Phage Bank Initiative in Bangladesh
+# PhageBiomeLab: Phage Bank Initiative in Bangladesh
 
 [![Live Site](https://img.shields.io/badge/Live_Site-phagebiomelab.com-2ea44f?style=for-the-badge&logo=google-chrome&logoColor=white)](https://phagebiomelab.com/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
@@ -11,7 +11,7 @@
 
 ---
 
-## 📌 Research & Project Context
+## Research & Project Context
 
 Antimicrobial Resistance (AMR) represents one of the most critical threats to modern global public health. The **PhageBiome Lab** conducts *in vivo* and *in silico* investigations into:
 - **Bacteriophage Therapy:** Screening and characterizing therapeutic phages targeting multi-drug resistant (MDR) bacterial pathogens.
@@ -23,9 +23,9 @@ Microbiology and genomic research wet-labs frequently face challenges with fragm
 
 ---
 
-## 🚀 Core Features & Capabilities
+## Core Features & Capabilities
 
-### 1. 🧫 Biological Repository & Biobank Management
+### 1. Biological Repository & Biobank Management
 - **Bacterial Strain Cataloging:**
   - Tracks taxonomic classification (Species, Strain ID) and clinical/environmental isolation source.
   - Records molecular identification parameters (16S rRNA sequence markers).
@@ -35,7 +35,7 @@ Microbiology and genomic research wet-labs frequently face challenges with fragm
   - Stores genetic characteristics, life cycles (lytic vs. lysogenic), particle morphology, and cryopreservation protocols.
   - Filterable public and internal database interface for laboratory benchmarking.
 
-### 2. 🎓 Academic Portfolio & Researcher Profiles
+### 2. Academic Portfolio & Researcher Profiles
 - Comprehensive academic profile management categorized into **Principal Investigators**, **Co-investigators**, **PhD Students**, **MS (Thesis) Students**, **Undergraduate Researchers**, and **Alumni**.
 - Relational mapping of academic credentials per researcher:
   - Peer-reviewed publications and conference proceedings.
@@ -43,12 +43,12 @@ Microbiology and genomic research wet-labs frequently face challenges with fragm
   - Academic honours, awards, and external affiliations.
   - Pedagogical and teaching appointments.
 
-### 3. 🔬 Research Dissemination Engine
+### 3. Research Dissemination Engine
 - Dynamic indexing of **ongoing investigations** versus **peer-reviewed publications**.
 - Interactive media gallery showcasing laboratory infrastructure, field sampling, and electron/fluorescence microscopy data.
 - Built-in rich-text editing (TinyMCE integration) enabling lab members to update project summaries without manual HTML drafting.
 
-### 4. ⚙️ Production-Grade Engineering & Security
+### 4. Production-Grade Engineering & Security
 - **Decoupled Architecture:** Configuration managed cleanly via environment variables (`django-environ`).
 - **Static Asset Pipeline:** Optimized static compression and caching using WhiteNoise.
 - **Media Asset Processing:** Automated image optimization with Pillow.
@@ -56,7 +56,7 @@ Microbiology and genomic research wet-labs frequently face challenges with fragm
 
 ---
 
-## 🏛️ System Architecture & Data Schema
+## System Architecture & Data Schema
 
 The platform is designed around Django's Model-View-Template (MVT) pattern with normalized relational database models:
 
@@ -88,7 +88,7 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Layer | Technology | Purpose |
 | :--- | :--- | :--- |
@@ -101,7 +101,7 @@ The platform is designed around Django's Model-View-Template (MVT) pattern with 
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 PhageBiomeLab/
@@ -132,7 +132,7 @@ PhageBiomeLab/
 
 ---
 
-## 💻 Local Setup & Installation
+## Local Setup & Installation
 
 ### Prerequisites
 - Python 3.10 or higher
@@ -181,7 +181,7 @@ Visit `http://127.0.0.1:8000/` in your browser. Access the administrative dashbo
 
 ---
 
-## 🚢 Deployment & Continuous Delivery
+## Deployment & Continuous Delivery
 
 The live platform is deployed using an automated git-driven webhook pipeline:
 1. Pushing commits to the `main` branch triggers a remote webhook endpoint (`deploy.php`).
@@ -194,16 +194,16 @@ python manage.py collectstatic --noinput
 
 ---
 
-## 👥 Leadership, Supervision & Development
+## Leadership, Supervision & Development
 
-### 🔬 Project Supervision & Principal Investigator
+### Project Supervision & Principal Investigator
 **[Prof. Dr. Md. Shakhinur Islam Mondal, PhD](https://phagebiomelab.com/member/6/)**
 - **Role:** Principal Investigator & Project Supervisor
 - **Designation:** Professor, Department of Genetic Engineering and Biotechnology
 - **Institution:** Shahjalal University of Science and Technology, Sylhet, Bangladesh
 - **Lab Profile:** [Prof. Mondal's Profile on PhageBiomeLab](https://phagebiomelab.com/member/6/)
 
-### 💻 System Architecture & Development
+### System Architecture & Development
 **Md Abu Sadat Soash**
 - **Role:** Full-Stack Architect & Lead Developer
 - **Academic Background:** Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology, Sylhet, Bangladesh
@@ -214,6 +214,6 @@ python manage.py collectstatic --noinput
 
 ---
 
-## 📄 License & Attribution
+## License & Attribution
 
 Developed for **PhageBiome Lab**, Shahjalal University of Science and Technology, Sylhet, Bangladesh. All rights reserved.
