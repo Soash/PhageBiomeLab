@@ -3,7 +3,7 @@
 [![Live Platform](https://img.shields.io/badge/Platform-Live-brightgreen.svg)](https://phagebiomelab.com/)
 [![Python](https://img.shields.io/badge/Python-3.10%20%7C%203.11%20%7C%203.12-blue.svg)](https://www.python.org/)
 [![Django](https://img.shields.io/badge/Django-5.1-092E20.svg)](https://www.djangoproject.com/)
-[![Institution](https://img.shields.io/badge/Institution-SUST%20Bangladesh-orange.svg)](https://www.sust.edu/)
+[![Institution](https://img.shields.io/badge/Institution-Shahjalal%20University%20of%20Science%20%26%20Technology-orange.svg)](https://www.sust.edu/)
 
 ---
 
@@ -11,7 +11,7 @@
 
 Antimicrobial Resistance (AMR) is one of the most critical public health emergencies of the 21st century, rendering conventional antibiotic therapies progressively ineffective against multidrug-resistant (MDR) bacterial pathogens. Bacteriophage therapy represents a highly specific, bio-compatible alternative to traditional antibiotics. However, translational bacteriology wet-labs consistently face logistical obstacles with isolate tracking, fragmented spreadsheet archives, lack of standardized phenotypic/genotypic documentation, and an absence of unified public-facing research dissemination systems.
 
-Here, we present **PhageBiomeLab** ([https://phagebiomelab.com](https://phagebiomelab.com)), a dedicated Laboratory Information Management System (LIMS), biological repository, and academic portal engineered for the **PhageBiome Research Group** at the **Department of Genetic Engineering and Biotechnology (GEB)**, **Shahjalal University of Science and Technology (SUST)**, Sylhet, Bangladesh. PhageBiomeLab establishes the first centralized digital infrastructure in Bangladesh dedicated to archiving clinical and environmental bacterial isolates alongside therapeutic bacteriophage banks.
+Here, we present **PhageBiomeLab** ([https://phagebiomelab.com](https://phagebiomelab.com)), a dedicated Laboratory Information Management System (LIMS), biological repository, and academic portal engineered for the **PhageBiome Research Group** at the **Department of Genetic Engineering and Biotechnology**, **Shahjalal University of Science and Technology**, Sylhet, Bangladesh. PhageBiomeLab establishes the first centralized digital infrastructure in Bangladesh dedicated to archiving clinical and environmental bacterial isolates alongside therapeutic bacteriophage banks.
 
 Developed with Python and Django, the platform indexes characterized bacterial strains (including isolation origin, 16S rRNA sequence markers, antibiotic susceptibility patterns, and ultra-low cryogenic storage coordinates) and corresponding bacteriophage isolates (host specificity, life cycle, morphology, and genomic determinants). Complementing its biobank infrastructure, PhageBiomeLab features an integrated academic management engine with relational curricula vitae across six personnel tiers, categorized research project dissemination (ongoing investigations vs. peer-reviewed publications), a high-resolution scientific media gallery, and an automated continuous delivery pipeline for zero-downtime server synchronization.
 
@@ -225,13 +225,13 @@ python manage.py collectstatic --noinput
 
 ## 6. Project Team & Acknowledgements
 
-The development and maintenance of **PhageBiomeLab** is conducted under the guidance and leadership of the faculty and researchers at the **Department of Genetic Engineering and Biotechnology (GEB)**, **Shahjalal University of Science and Technology (SUST)**.
+The development and maintenance of **PhageBiomeLab** is conducted under the guidance and leadership of the faculty and researchers at the **Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology, Sylhet, Bangladesh**.
 
 ### Project Leadership
 - **Principal Investigator & Project Supervisor:** [Prof. Dr. Md. Shakhinur Islam Mondal, PhD](https://phagebiomelab.com/member/6/)  
-  *Professor, Department of Genetic Engineering and Biotechnology (GEB), Shahjalal University of Science and Technology (SUST), Sylhet, Bangladesh*
+  *Professor, Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology, Sylhet, Bangladesh*
 - **Full-Stack Architect & Lead Developer:** [Md Abu Sadat Soash](https://soash.github.io/) ([@Soash](https://github.com/Soash))  
-  *Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology (SUST), Sylhet, Bangladesh*
+  *Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology, Sylhet, Bangladesh*
 - **Co-Developer:** Mutashim Ahammed Rafi
 
 ### Laboratory Research Group
@@ -239,25 +239,9 @@ Special recognition is extended to all postgraduate fellows, research associates
 
 ---
 
-## 7. Citation
-
-If you utilize data, isolates, or software architecture from the PhageBiomeLab platform in your scientific research or academic publications, please cite the repository as follows:
-
-```bibtex
-@article{PhageBiomeLab2026,
-  title   = {PhageBiomeLab: Phage Bank Initiative and Laboratory Information Management System},
-  author  = {Mondal, Md. Shakhinur Islam and Soash, Md Abu Sadat and Rafi, Mutashim Ahammed and {PhageBiome Research Group}},
-  journal = {Department of Genetic Engineering and Biotechnology, Shahjalal University of Science and Technology},
-  year    = {2026},
-  url     = {https://phagebiomelab.com/}
-}
-```
-
----
-
-## 8. Inquiries & Correspondence
+## 7. Inquiries & Correspondence
 - **Principal Platform:** [https://phagebiomelab.com](https://phagebiomelab.com)
-- **Host Institution:** [Shahjalal University of Science and Technology (SUST)](https://www.sust.edu/)
-- **Department:** [Department of Genetic Engineering and Biotechnology (GEB)](https://www.sust.edu/departments/geb)
+- **Host Institution:** [Shahjalal University of Science and Technology](https://www.sust.edu/)
+- **Department:** [Department of Genetic Engineering and Biotechnology](https://www.sust.edu/departments/geb)
 - **Principal Investigator Profile:** [Prof. Dr. Md. Shakhinur Islam Mondal](https://phagebiomelab.com/member/6/)
 - **Technical Inquiries & Repository Maintenance:** [Md Abu Sadat Soash](https://github.com/Soash)
