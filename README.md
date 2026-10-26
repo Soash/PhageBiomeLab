@@ -1,4 +1,4 @@
-# 🧬 PhageBiomeLab: Laboratory Information Management System & Research Web Portal
+# 🧬 PhageBiomeLab: Phage Bank Initiative in Bangladesh
 
 [![Live Site](https://img.shields.io/badge/Live_Site-phagebiomelab.com-2ea44f?style=for-the-badge&logo=google-chrome&logoColor=white)](https://phagebiomelab.com/)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
